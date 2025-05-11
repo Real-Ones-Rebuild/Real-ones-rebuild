@@ -12,6 +12,7 @@
       padding: 0;
       background: #f8f9fc;
       color: #1a1a1a;
+      transition: background 0.3s, color 0.3s;
     }
     header {
       background: linear-gradient(to right, #0033a0, #0072ce);
@@ -62,9 +63,46 @@
       font-size: 0.9rem;
       font-family: 'Playfair Display', serif;
     }
+
+    /* 🌙 Dark Mode */
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .dark-mode section {
+      background: #1f1f1f;
+      color: #f1f1f1;
+    }
+    .dark-mode header {
+      background: #1f1f1f;
+    }
+    .dark-mode footer {
+      background: #1f1f1f;
+      color: #cccccc;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #0033a0;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    .dark-toggle:hover {
+      background: #005bb5;
+    }
   </style>
 </head>
 <body>
+
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
   <header>
     <h1>Real Ones Rebuild Blog</h1>
@@ -82,6 +120,20 @@
   <footer>
     <p>&copy; 2025 Real Ones Rebuild. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
 
 </body>
 </html>
