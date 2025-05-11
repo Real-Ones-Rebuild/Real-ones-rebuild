@@ -14,6 +14,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
     }
     header {
       text-align: center;
@@ -93,9 +94,44 @@
       font-size: 0.9rem;
       font-family: 'Cinzel', serif;
     }
+
+    /* 🌙 Dark Mode Styles */
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .dark-mode header {
+      background: #1f1f1f;
+      color: #ffffff;
+    }
+    .dark-mode footer {
+      background: #1f1f1f;
+      color: #cccccc;
+    }
+
+    .dark-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #0033a0;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    .dark-toggle:hover {
+      background: #005bb5;
+    }
   </style>
 </head>
 <body>
+
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
   <header>
     <img src="logo.png" alt="Real Ones Rebuild Logo" />
@@ -138,6 +174,10 @@
         quoteBox.classList.add('fade-in');
       }, 400);
     }, 4000);
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
   </script>
 
 </body>
