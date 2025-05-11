@@ -1,140 +1,168 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Merch | Real Ones Rebuild</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Raleway', sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f8f9fc;
+      font-family: 'Raleway', sans-serif;
+      background: #f8f9fc;
       color: #1a1a1a;
+      transition: background 0.3s, color 0.3s;
     }
     header {
       background: linear-gradient(to right, #0033a0, #0072ce);
       color: white;
-      padding: 3rem 2rem;
       text-align: center;
-      font-family: 'Cinzel', serif;
+      padding: 2.5rem 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
     }
     header h1 {
       margin: 0;
       font-size: 2.5rem;
     }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1100px;
-      margin: auto;
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
     }
-    .product-card {
+    h2 {
+      font-size: 1.6rem;
+      color: #0033a0;
+      margin-bottom: 1rem;
+    }
+    .section {
+      margin-bottom: 3rem;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .product {
+      flex: 1 1 200px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      padding: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       text-align: center;
     }
-    .product-card img {
-      max-width: 100%;
+    .product img {
+      width: 100%;
       height: auto;
-      border-radius: 8px;
-      margin-bottom: 1rem;
+      display: block;
     }
-    .product-card h3 {
-      font-size: 1.25rem;
-      margin: 0.5rem 0;
-      color: #0033a0;
-    }
-    .product-card p {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-    .product-card .price {
+    .product p {
+      margin: 0;
+      padding: 1rem;
       font-weight: bold;
-      margin-bottom: 1rem;
-      color: #0072ce;
-    }
-    .product-card button {
-      background: #0072ce;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 1px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .product-card button:hover {
-      background: #005bb5;
     }
     footer {
       text-align: center;
       padding: 1.5rem;
       background: #003366;
-      color: white;
+      color: #ffffff;
       font-size: 0.9rem;
-      font-family: 'Cinzel', serif;
+    }
+
+    /* Dark Mode */
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .dark-mode header {
+      background: #1f1f1f;
+    }
+    .dark-mode .product {
+      background: #1f1f1f;
+      color: #ffffff;
+    }
+    .dark-mode footer {
+      background: #1f1f1f;
+      color: #cccccc;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #0033a0;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    .dark-toggle:hover {
+      background: #005bb5;
     }
   </style>
 </head>
 <body>
 
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
   <header>
-    <h1>Wear the Message. Represent the Movement.</h1>
+    <h1>Real Ones Rebuild Merch</h1>
   </header>
 
-  <section class="products">
-    <div class="product-card">
-      <img src="tee_real_ones_rebuild_strongarm.png" alt="Real Ones Rebuild Tee - Strong Arm">
-      <h3>Real Ones Rebuild Tee (Strong Arm)</h3>
-      <p>Classic bold logo with flex — for those who fight back.</p>
-      <div class="price">$25.00</div>
-      <button>Coming Soon</button>
+  <div class="container">
+    <div class="section">
+      <h2>T-Shirts</h2>
+      <div class="products">
+        <div class="product">
+          <img src="tee1.png" alt="T-Shirt 1">
+          <p>HoldenStrong Tee</p>
+        </div>
+        <div class="product">
+          <img src="tee2.png" alt="T-Shirt 2">
+          <p>We Rebuild Together Tee</p>
+        </div>
+        <div class="product">
+          <img src="tee3.png" alt="T-Shirt 3">
+          <p>Real Ones Only Tee</p>
+        </div>
+      </div>
     </div>
 
-    <div class="product-card">
-      <img src="tee_holden_intrist.png" alt="Holden Intrist Tee">
-      <h3>Holden Intrist Tee</h3>
-      <p>Stand for your story. HoldenStrong meets bold belief.</p>
-      <div class="price">$25.00</div>
-      <button>Coming Soon</button>
+    <div class="section">
+      <h2>Hoodies</h2>
+      <div class="products">
+        <div class="product">
+          <img src="hoodie1.png" alt="Hoodie 1">
+          <p>HoldenStrong Hoodie</p>
+        </div>
+        <div class="product">
+          <img src="hoodie2.png" alt="Hoodie 2">
+          <p>Legacy Builder Hoodie</p>
+        </div>
+      </div>
     </div>
-
-    <div class="product-card">
-      <img src="tee_real_ones_lion.png" alt="Real Ones Rebuild Tee - Lion Flame">
-      <h3>Real Ones Rebuild Tee (Lion Flame)</h3>
-      <p>Loyalty. Fire. Identity. For those who rise from it.</p>
-      <div class="price">$30.00</div>
-      <button>Coming Soon</button>
-    </div>
-  
-    <div class="product-card">
-      <img src="hoodie_holden_strong_adversity.png" alt="HoldenStrong Hoodie - Strength in Adversity">
-      <h3>HoldenStrong Hoodie</h3>
-      <p>Strength in adversity — warmth in every step forward.</p>
-      <div class="price">$40.00</div>
-      <button>Coming Soon</button>
-    </div>
-
-    <div class="product-card">
-      <img src="hoodie_real_ones_crane.png" alt="Real Ones Rebuild Hoodie - Crane Design">
-      <h3>Real Ones Rebuild Hoodie (Crane)</h3>
-      <p>Stacking bricks and breaking barriers — we rebuild in layers.</p>
-      <div class="price">$42.00</div>
-      <button>Coming Soon</button>
-    </div>
-  </section>
+  </div>
 
   <footer>
     <p>&copy; 2025 Real Ones Rebuild. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
 
 </body>
 </html>
