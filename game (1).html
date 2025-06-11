@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Would You Rather: Freedom or Jail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: block;
+      background-color: #007BFF;
+      color: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .end-screen {
+      font-size: 1.5rem;
+      padding: 2rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Would You Rather: Freedom or Jail</h1>
+    <div id="game">
+      <div class="question" id="question">Loading...</div>
+      <button class="btn" id="option1">Option 1</button>
+      <button class="btn" id="option2">Option 2</button>
+    </div>
+    <div class="end-screen hidden" id="result"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "You're invited to a house party with old friends. Do you go?",
+        options: ["Yes, just one night can’t hurt", "No, too risky — might trigger old habits"],
+        effects: [-2, +1]
+      },
+      {
+        question: "You’re stressed. Do you skip your probation check-in?",
+        options: ["Yes, I’ll reschedule it later", "No, I keep the appointment"],
+        effects: [-3, +1]
+      },
+      {
+        question: "You’re offered a job that pays under the table. Do you take it?",
+        options: ["Yes, I need money now", "No, I’ll wait for a legal option"],
+        effects: [-1, +1]
+      },
+      {
+        question: "You wake up late and miss therapy. Do you lie about it?",
+        options: ["Yes, say I was sick", "No, admit I overslept and try to reschedule"],
+        effects: [-2, +1]
+      },
+      {
+        question: "A friend offers you a pill to 'take the edge off.' Do you take it?",
+        options: ["Yes, just this once", "No, I walk away"],
+        effects: [-3, +2]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const option1Btn = document.getElementById("option1");
+    const option2Btn = document.getElementById("option2");
+    const gameEl = document.getElementById("game");
+    const resultEl = document.getElementById("result");
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+      questionEl.textContent = q.question;
+      option1Btn.textContent = q.options[0];
+      option2Btn.textContent = q.options[1];
+    }
+
+    function handleAnswer(choiceIndex) {
+      const effect = questions[currentQuestion].effects[choiceIndex];
+      score += effect;
+      currentQuestion++;
+
+      if (currentQuestion >= questions.length) {
+        endGame();
+      } else {
+        loadQuestion();
+      }
+    }
+
+    function endGame() {
+      gameEl.classList.add("hidden");
+      resultEl.classList.remove("hidden");
+
+      if (score < -3 || score > 3) {
+        resultEl.innerHTML = `😔 You recidivated. Your score was ${score}.<br>Try again and make different choices.`;
+      } else {
+        resultEl.innerHTML = `🎉 You stayed free! Your score was ${score}.<br>Well done, keep growing strong.`;
+      }
+    }
+
+    option1Btn.addEventListener("click", () => handleAnswer(0));
+    option2Btn.addEventListener("click", () => handleAnswer(1));
+
+    loadQuestion();
+  </script>
+</body>
+</html>
