@@ -242,6 +242,14 @@
             line-height: 1.7;
         }
         
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
         .restart-btn {
             background: linear-gradient(90deg, #4e7cff, #b84dff);
             color: white;
@@ -253,12 +261,36 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(78, 124, 255, 0.4);
-            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
-        .restart-btn:hover {
+        .home-btn {
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .restart-btn:hover, .home-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(78, 124, 255, 0.6);
+        }
+        
+        .home-btn:hover {
+            box-shadow: 0 12px 30px rgba(46, 204, 113, 0.6);
         }
         
         .violation {
@@ -311,6 +343,16 @@
             .result-message {
                 font-size: 1.2rem;
             }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .restart-btn, .home-btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -362,7 +404,15 @@
                 <h2 class="result-title" id="resultTitle">Your Probation Result</h2>
                 <div class="result-score" id="resultScore">0</div>
                 <div class="result-message" id="resultMessage"></div>
-                <button class="restart-btn" id="restartBtn"><i class="fas fa-redo"></i> Play Again</button>
+                
+                <div class="button-group">
+                    <button class="restart-btn" id="restartBtn">
+                        <i class="fas fa-redo"></i> Play Again
+                    </button>
+                    <button class="home-btn" id="homeBtn">
+                        <i class="fas fa-home"></i> Go to Homepage
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -441,6 +491,7 @@
         const resultScore = document.getElementById('resultScore');
         const resultMessage = document.getElementById('resultMessage');
         const restartBtn = document.getElementById('restartBtn');
+        const homeBtn = document.getElementById('homeBtn');
         const scoreValue = document.getElementById('scoreValue');
         const currentQuestionElement = document.getElementById('currentQuestion');
         const completedCount = document.getElementById('completedCount');
@@ -542,6 +593,10 @@
 
         // Event listeners
         restartBtn.addEventListener('click', initGame);
+        homeBtn.addEventListener('click', () => {
+            // Replace with your actual homepage URL
+            window.location.href = 'https://realonesrebuild.com';
+        });
 
         // Start the game when page loads
         window.addEventListener('DOMContentLoaded', initGame);
