@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Would You Rather: Freedom or Jail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      border-radius: 10px;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .question {
+      font-size: 1.2rem;
+      margin: 1.5rem 0;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #0033a0;
+      color: white;
+    }
+    button:hover {
+      background: #001f5c;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    .link {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+    .link a {
+      text-decoration: none;
+      color: #0033a0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="game">
+    <h1>Would You Rather: Freedom or Jail</h1>
+    <p id="intro">You've been released from prison. Every choice you make can either protect your freedom or put it at risk. Stay between -3 and +3 to maintain your path. Choose wisely.</p>
+    <div class="question" id="question"></div>
+    <div class="buttons" id="buttons"></div>
+    <div class="result" id="result"></div>
+    <div class="link" id="link"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "Would you rather spend money going out to eat or spend money for an Uber to go to a probation appointment?",
+        options: ["Spend money going out to eat", "Spend money for an Uber to go to a probation appointment"],
+        scores: [-2, -4]
+      },
+      {
+        q: "Would you rather start a new job that pays more but doesn't let you attend drug class, or stay at your current job but lose hours due to attending drug class?",
+        options: ["Start a new job that pays more", "Stay at the current position"],
+        scores: [1, -2]
+      },
+      {
+        q: "Would you rather pay your probation fee for the month or pay for your driver's license?",
+        options: ["Pay probation fee", "Pay for your driver's license"],
+        scores: [1, 2]
+      },
+      {
+        q: "Would you rather buy a new car but miss drug class next week, or ride the bus and miss 3 days of work for classes and probation check-in?",
+        options: ["Buy a new car", "Ride the bus and miss 3 days of work"],
+        scores: [4, -5]
+      },
+      {
+        q: "Would you rather buy the clothes you need or pay for your drug testing items through probation?",
+        options: ["Buy clothes", "Pay for drug testing items"],
+        scores: [3, -3]
+      },
+      {
+        q: "Would you rather be homeless in the state you're serving probation or stay in another state and risk a violation?",
+        options: ["Be homeless", "Risk violation"],
+        scores: [-2, -1]
+      },
+      {
+        q: "Would you rather skip drug class for an interview or miss work to meet your P.O.?",
+        options: ["Skip drug class for interview", "Miss work to meet P.O."],
+        scores: [2, -3]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionDiv = document.getElementById("question");
+    const buttonsDiv = document.getElementById("buttons");
+    const resultDiv = document.getElementById("result");
+    const linkDiv = document.getElementById("link");
+    const introDiv = document.getElementById("intro");
+
+    function loadQuestion() {
+      introDiv.style.display = "none";
+      const q = questions[currentQuestion];
+      questionDiv.innerText = q.q;
+      buttonsDiv.innerHTML = "";
+
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.onclick = () => {
+          score += q.scores[index];
+          currentQuestion++;
+          if (currentQuestion < questions.length) {
+            loadQuestion();
+          } else {
+            showResult();
+          }
+        };
+        buttonsDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      questionDiv.style.display = "none";
+      buttonsDiv.style.display = "none";
+
+      if (score >= -3 && score <= 3) {
+        resultDiv.innerHTML = "✅ You maintained your freedom. Stay strong.";
+      } else {
+        resultDiv.innerHTML = "🚫 You recidivated. Rebuild and reflect — this is real life.";
+      }
+
+      linkDiv.innerHTML = '<a href="index.html">← Back to Home</a>';
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
