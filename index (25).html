@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Ones Rebuild | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background-color: #f8f9fc;
+      color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: #ffffff;
+    }
+    header img {
+      max-width: 180px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      margin: 0.5rem 0;
+      color: #0033a0;
+    }
+    .quotes {
+      text-align: center;
+      margin: 2rem 1rem;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #005bb5;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    nav a {
+      text-decoration: none;
+      background: #0033a0;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      transform: scale(1.05);
+      background: #005bb5;
+    }
+    footer {
+      text-align: center;
+      margin-top: auto;
+      padding: 1rem;
+      background: #003366;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-family: 'Cinzel', serif;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Real Ones Rebuild Logo" />
+    <h1>Real Ones Rebuild</h1>
+  </header>
+
+  <div class="quotes" id="quoteBox">We Rebuild Together.</div>
+
+  <nav>
+    <a href="blog.html">Blog</a>
+    <a href="merch.html">Merch</a>
+    <a href="podcast.html">Podcast</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="game.html">Freedom Game</a>
+    <a href="stefyj.html">Live Like Stefy J</a>
+  </nav>
+
+  <footer>
+    <p>&copy; 2025 Real Ones Rebuild. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const quotes = [
+      "We Rebuild Together.",
+      "From Setbacks to Comebacks.",
+      "Not Perfect. But I’m Proof.",
+      "You Are Not Your Past.",
+      "Being the Father I Never Had.",
+      "Rebuilding is a Revolution."
+    ];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % quotes.length;
+      document.getElementById('quoteBox').textContent = quotes[index];
+    }, 4000);
+  </script>
+
+</body>
+</html>
