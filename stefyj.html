@@ -4,94 +4,422 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Live Like Stefy J | Real Ones Rebuild</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #222;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #111;
+      --accent: #d4af37;
+      --light: #f4f4f4;
+      --dark: #222;
+      --gray: #777;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: var(--dark);
+      line-height: 1.6;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      min-height: 100vh;
     }
 
     header {
-      background-color: #111;
-      color: #fff;
-      padding: 40px 20px;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 60px 20px;
       text-align: center;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    }
+
+    header > * {
+      position: relative;
+      z-index: 2;
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8em;
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
     }
 
     header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-      color: #ccc;
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 1200px;
       margin: 40px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 0 20px;
     }
 
-    .tribute {
-      font-size: 1.1em;
-      line-height: 1.6;
+    .tribute-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tribute-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .tribute-card p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .tribute-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tribute-card p.highlight {
+      background: linear-gradient(to right, #fff9db, #fff3bf);
+      padding: 15px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-weight: 500;
     }
 
     .hashtag {
       text-align: center;
-      font-size: 1.4em;
+      font-size: 1.8rem;
       margin: 40px 0 20px;
-      color: #444;
+      color: var(--dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .call-to-action {
-      background-color: #ffeeba;
-      padding: 20px;
-      border-radius: 8px;
+      background: linear-gradient(135deg, #fff9db 0%, #ffeeba 100%);
+      padding: 30px;
+      border-radius: 12px;
       text-align: center;
-      font-weight: bold;
-      margin-top: 30px;
+      font-weight: 600;
+      margin: 40px 0;
+      border: 2px dashed var(--accent);
+      position: relative;
     }
 
-    footer {
+    .call-to-action p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    /* Photo Sharing Section */
+    .photo-section {
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+      margin: 60px 0;
+    }
+
+    .section-title {
       text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .photo-form {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      border: 1px solid #e9ecef;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background: #c19d2e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    /* Photo Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .photo-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .photo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .photo-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-content {
       padding: 20px;
-      color: #777;
+    }
+
+    .photo-author {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .photo-caption {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .photo-date {
+      color: #adb5bd;
+      font-size: 0.85rem;
+      margin-top: 15px;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 25px 0;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .tribute-card, .photo-section {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      header p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>In Loving Memory of Stephanie “Stefy J” Jones</h1>
+    <h1>In Loving Memory of Stephanie "Stefy J" Jones</h1>
     <p>Her kindness was her legacy. Her love lives on in us.</p>
   </header>
 
   <div class="container">
-    <div class="tribute">
+    <div class="tribute-card">
       <p>
         My mom, Stephanie Jones — known to many as "Stefy J" — passed away after a tragic house fire. I had to make the hardest decision of my life: to let her go peacefully. But the truth is, she never left us — because what she gave to this world is still moving, still shining, still saving people.
       </p>
       <p>
-        Stefy J was the kind of woman who would give you the shirt off her back, feed you when you were hungry, or let you stay under her roof when you had nowhere else to go. She didn’t need to know you well — she just needed to know you were in need.
+        Stefy J was the kind of woman who would give you the shirt off her back, feed you when you were hungry, or let you stay under her roof when you had nowhere else to go. She didn't need to know you well — she just needed to know you were in need.
       </p>
       <p>
         She was a mother to many. A protector. A friend. A quiet hero in a loud world.
       </p>
-      <p>
-        I’m sharing her story because I want her legacy to keep going. If she ever helped you, or if you’ve ever known someone like her, I’m asking you to carry that energy forward. Be the one who shows up. Be the one who feeds, shelters, listens, and loves. Be someone’s safe place.
+      <p class="highlight">
+        "Kindness is the language which the deaf can hear and the blind can see." - Mark Twain
       </p>
       <p>
-        That’s how we keep her spirit alive. That’s how we Live Like Stefy J.
+        I'm sharing her story because I want her legacy to keep going. If she ever helped you, or if you've ever known someone like her, I'm asking you to carry that energy forward. Be the one who shows up. Be the one who feeds, shelters, listens, and loves. Be someone's safe place.
+      </p>
+      <p>
+        That's how we keep her spirit alive. That's how we Live Like Stefy J.
       </p>
     </div>
 
@@ -100,14 +428,165 @@
     </div>
 
     <div class="call-to-action">
-      Share a story. Help someone in need. Be kind when it costs you something.<br />
-      Do it in her name. Do it from the heart. 💛
+      <p>Share a story. Help someone in need. Be kind when it costs you something.</p>
+      <p>Do it in her name. Do it from the heart. 💛</p>
+    </div>
+    
+    <!-- Photo Sharing Section -->
+    <div class="photo-section">
+      <h2 class="section-title">Share Your Memories</h2>
+      <p style="text-align: center; margin-bottom: 30px;">Upload your photos and share how Stefy J touched your life</p>
+      
+      <div class="photo-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Enter your name">
+        </div>
+        
+        <div class="form-group">
+          <label for="photo">Select a Photo</label>
+          <input type="file" id="photo" class="form-control" accept="image/*">
+        </div>
+        
+        <div class="form-group">
+          <label for="caption">Caption/Story</label>
+          <textarea id="caption" class="form-control" placeholder="Share your memory of Stefy J..."></textarea>
+        </div>
+        
+        <button class="btn" onclick="addPhotoPost()">
+          <i class="fas fa-share"></i> Share Memory
+        </button>
+      </div>
+      
+      <h3 style="text-align: center; margin: 40px 0 20px; color: var(--dark);">Community Memories</h3>
+      
+      <div class="gallery" id="photoGallery">
+        <!-- Sample photo posts -->
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Stefy J" class="photo-img">
+          <div class="photo-content">
+            <div class="photo-author">
+              <div class="author-avatar">M</div>
+              <div class="author-name">Marquis Owens</div>
+            </div>
+            <p class="photo-caption">This was taken at mom's 50th birthday celebration. She was always the life of the party and made everyone feel special. I'll cherish these moments forever.</p>
+            <span class="photo-date">Posted on June 18, 2023</span>
+          </div>
+        </div>
+        
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80" alt="Stefy J" class="photo-img">
+          <div class="photo-content">
+            <div class="photo-author">
+              <div class="author-avatar">S</div>
+              <div class="author-name">Sarah Johnson</div>
+            </div>
+            <p class="photo-caption">Stefy took me in when I had nowhere to go. She didn't just give me shelter, she gave me hope. This photo was from the day I graduated college - she was my biggest supporter.</p>
+            <span class="photo-date">Posted on June 15, 2023</span>
+          </div>
+        </div>
+        
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Stefy J" class="photo-img">
+          <div class="photo-content">
+            <div class="photo-author">
+              <div class="author-avatar">R</div>
+              <div class="author-name">Robert Davis</div>
+            </div>
+            <p class="photo-caption">Stefy organized this community dinner every Thanksgiving. She made sure no one spent the holiday alone. Her generosity knew no bounds.</p>
+            <span class="photo-date">Posted on June 12, 2023</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <footer>
-    Made with love by her son, Marquis Owens. | realonesrebuild.com
+    <div class="footer-content">
+      <div class="footer-logo">Live Like Stefy J</div>
+      <p>Keeping her legacy alive through acts of kindness and community support</p>
+      
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      
+      <p class="copyright">Made with love by her son, Marquis Owens. | realonesrebuild.com © 2023</p>
+    </div>
   </footer>
 
+  <script>
+    function addPhotoPost() {
+      const nameInput = document.getElementById('name');
+      const photoInput = document.getElementById('photo');
+      const captionInput = document.getElementById('caption');
+      
+      const name = nameInput.value.trim();
+      const caption = captionInput.value.trim();
+      const file = photoInput.files[0];
+      
+      if (!name || !caption || !file) {
+        alert('Please fill in all fields and select a photo');
+        return;
+      }
+      
+      // For demonstration purposes, we'll use a placeholder image
+      // In a real application, you would upload the file to a server
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const photoData = e.target.result;
+        
+        const photoCard = document.createElement('div');
+        photoCard.className = 'photo-card';
+        
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        
+        const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+        
+        photoCard.innerHTML = `
+          <img src="${photoData}" alt="Memory of Stefy J" class="photo-img">
+          <div class="photo-content">
+            <div class="photo-author">
+              <div class="author-avatar">${initials}</div>
+              <div class="author-name">${name}</div>
+            </div>
+            <p class="photo-caption">${caption}</p>
+            <span class="photo-date">Posted on ${dateStr}</span>
+          </div>
+        `;
+        
+        document.getElementById('photoGallery').prepend(photoCard);
+        
+        // Reset form
+        nameInput.value = '';
+        captionInput.value = '';
+        photoInput.value = '';
+        
+        alert('Thank you for sharing your memory of Stefy J!');
+      };
+      
+      reader.readAsDataURL(file);
+    }
+    
+    // Animation for the header
+    window.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('header');
+      header.style.opacity = '0';
+      header.style.transform = 'translateY(-20px)';
+      
+      setTimeout(() => {
+        header.style.transition = 'opacity 1s ease, transform 1s ease';
+        header.style.opacity = '1';
+        header.style.transform = 'translateY(0)';
+      }, 300);
+    });
+  </script>
 </body>
 </html>
